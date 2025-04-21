@@ -17,11 +17,11 @@ type Message struct {
 // Consumer represents a Kafka consumer
 type Consumer struct {
 	client *kgo.Client
-	config *Config
+	config *ConsumerConfig
 }
 
 // NewConsumer creates a new Kafka consumer with the given configuration
-func NewConsumer(config *Config) (*Consumer, error) {
+func NewConsumer(config *ConsumerConfig) (*Consumer, error) {
 	opts := []kgo.Opt{
 		kgo.SeedBrokers(config.Brokers...),
 		kgo.ConsumerGroup(config.GroupID),

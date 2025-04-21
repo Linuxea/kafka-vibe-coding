@@ -12,11 +12,11 @@ import (
 // Producer represents a Kafka producer
 type Producer struct {
 	client *kgo.Client
-	config *Config
+	config *ProducerConfig
 }
 
 // NewProducer creates a new Kafka producer with the given configuration
-func NewProducer(config *Config) (*Producer, error) {
+func NewProducer(config *ProducerConfig) (*Producer, error) {
 	// Set up producer options
 	opts := []kgo.Opt{
 		kgo.SeedBrokers(config.Brokers...),
@@ -49,7 +49,7 @@ func NewProducer(config *Config) (*Producer, error) {
 }
 
 // createTopicIfNotExists checks if a topic exists and creates it if it doesn't
-func (p *Producer) createTopicIfNotExists(config *Config) error {
+func (p *Producer) createTopicIfNotExists(config *ProducerConfig) error {
 	// Create an admin client
 	adminClient := kadm.NewClient(p.client)
 

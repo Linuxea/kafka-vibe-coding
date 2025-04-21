@@ -15,13 +15,13 @@ import (
 )
 
 func main() {
-	// Create a new configuration with improved settings
-	config := kafka.DefaultConfig()
+	// 创建一个新的消费者配置
+	config := kafka.DefaultConsumerConfig()
 	config.Topic = "test-topic"
 	config.GroupID = "test-consumer-group"
-	config.ReadTimeout = 30 * time.Second // Increased from 5s to 30s
+	config.ReadTimeout = 30 * time.Second // 从5秒增加到30秒
 
-	// Create a new consumer
+	// 创建一个新的消费者
 	consumer, err := kafka.NewConsumer(config)
 	if err != nil {
 		log.Fatalf("Failed to create consumer: %v", err)

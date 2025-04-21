@@ -14,17 +14,15 @@ import (
 )
 
 func main() {
-	// Create a new configuration with custom settings
-	config := &kafka.Config{
-		Brokers:           []string{"localhost:9092"},
-		Topic:             "test-topic",
-		WriteTimeout:      5 * time.Second,
-		AutoCreateTopic:   true,
-		NumPartitions:     1,
-		ReplicationFactor: 1,
-	}
+	// 创建一个新的生产者配置
+	config := kafka.DefaultProducerConfig()
+	config.Topic = "test-topic"
+	config.WriteTimeout = 5 * time.Second
+	config.AutoCreateTopic = true
+	config.NumPartitions = 1
+	config.ReplicationFactor = 1
 
-	// Create a new producer
+	// 创建一个新的生产者
 	producer, err := kafka.NewProducer(config)
 	if err != nil {
 		log.Fatalf("Failed to create producer: %v", err)
